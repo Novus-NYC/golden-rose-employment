@@ -1,10 +1,10 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { ImageSlot, PapelPicado } from "./image-slot";
 import { useLanguage } from "./language-context";
-import { logoLockup } from "./site-content";
+import { BrandLogo } from "./brand-logo";
+import { SurvivorResourceCallout } from "./awareness-campaign";
 
 export default function Home() {
   const { copy } = useLanguage();
@@ -44,17 +44,15 @@ export default function Home() {
 
           <aside className="hero-panel" aria-label="Golden Rose highlights">
             <div className="rose-card">
-              <img
-                alt="Golden Rose Agencia de Empleos NYC"
-                className="hero-logo"
-                src={logoLockup}
-              />
+              <BrandLogo className="hero-logo" lockup />
               <h2>{copy.home.appointmentTitle}</h2>
               <p>{copy.home.appointmentText}</p>
             </div>
           </aside>
         </div>
       </section>
+
+      <SurvivorResourceCallout />
 
       <section className="stats-strip" aria-label="Agency facts">
         {copy.home.stats.map(([value, label]) => (

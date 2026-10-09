@@ -3,6 +3,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "./language-context";
 import { ScrollReveal } from "./scroll-reveal";
 import { SiteFooter, SiteHeader } from "./site-chrome";
+import { AwarenessCampaign } from "./awareness-campaign";
+import { syncAwarenessTheme } from "./awareness-theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,11 +31,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
   },
-  icons: {
-    icon: "/brand/mark.png",
-    shortcut: "/brand/mark.png",
-    apple: "/brand/mark.png",
-  },
 };
 
 export default function RootLayout({
@@ -42,10 +39,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/brand/mark.png" />
+        <link rel="shortcut icon" href="/brand/mark.png" />
+        <link rel="apple-touch-icon" href="/brand/mark.png" />
+        <script dangerouslySetInnerHTML={{ __html: `(${syncAwarenessTheme.toString()})(false);` }} />
+      </head>
       <body>
         <LanguageProvider>
           <SiteHeader />
+          <AwarenessCampaign />
           <ScrollReveal />
           {children}
           <SiteFooter />

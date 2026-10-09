@@ -42,6 +42,9 @@ export function ScrollReveal() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Support resources should be readable immediately, at every scroll position.
+    if (pathname === "/domestic-violence-resources") return;
+
     const elements = Array.from(document.querySelectorAll(revealSelector));
 
     elements.forEach((element, index) => {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PapelPicado, Photo, TextileBand } from "../image-slot";
 import { useLanguage } from "../language-context";
 import { photos } from "../site-content";
+import { SurvivorResourceCallout } from "../awareness-campaign";
 
 export default function CommunityPage() {
   const { copy } = useLanguage();
@@ -24,6 +25,7 @@ export default function CommunityPage() {
           </Link>
         </div>
       </section>
+      <SurvivorResourceCallout />
       <section className="section split">
         <div className="initiative-card">
           <span>Golden Rose</span>

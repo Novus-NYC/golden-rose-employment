@@ -1,16 +1,18 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "./language-context";
-import { dcwpLinks, logoImage } from "./site-content";
+import { dcwpLinks } from "./site-content";
+import { BrandLogo } from "./brand-logo";
+import { QuickExitButton } from "./quick-exit";
 
 const navItems = [
   ["home", "/"],
   ["about", "/about"],
   ["services", "/services"],
   ["community", "/community"],
+  ["resources", "/domestic-violence-resources"],
   ["rights", "/job-seeker-rights"],
   ["contact", "/contact"],
 ] as const;
@@ -22,11 +24,11 @@ export function SiteHeader() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to main content
+        {language === "en" ? "Skip to main content" : "Saltar al contenido principal"}
       </a>
       <header className="site-header">
         <Link className="brand" href="/#top" aria-label="Golden Rose home">
-          <img alt="Golden Rose logo" src={logoImage} />
+          <BrandLogo />
           <span>
             <strong>Golden Rose</strong>
             <small>Agencia de Empleos NYC</small>
@@ -64,7 +66,7 @@ export function SiteHeader() {
             onClick={() => setLanguage(language === "en" ? "es" : "en")}
             type="button"
           >
-            {language === "en" ? "Espanol" : "English"}
+            {language === "en" ? "Español" : "English"}
           </button>
         </nav>
       </header>
@@ -74,19 +76,30 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   const { copy } = useLanguage();
+  const pathname = usePathname();
+  const isResourcePage = pathname === "/domestic-violence-resources";
 
   return (
     <>
-      <div className="mobile-contact-bar" aria-label="Quick contact">
-        <a href="tel:+13473509660">Call</a>
-        <a href="https://wa.me/13476510276" rel="noreferrer" target="_blank">
-          WhatsApp<span className="sr-only">, opens in a new tab</span>
-        </a>
+      <div className="mobile-contact-bar" role="group" aria-label={isResourcePage ? copy.nav.resources : "Quick contact"}>
+        {isResourcePage ? (
+          <>
+            <a href="tel:+18006214673">Safe Horizon · 24/7</a>
+            <QuickExitButton />
+          </>
+        ) : (
+          <>
+            <a href="tel:+13473509660">Call</a>
+            <a href="https://wa.me/13476510276" rel="noreferrer" target="_blank">
+              WhatsApp<span className="sr-only">, opens in a new tab</span>
+            </a>
+          </>
+        )}
       </div>
       <footer className="site-footer">
         <div className="footer-grid">
           <div className="footer-brand">
-            <img alt="Golden Rose logo" className="footer-logo" src={logoImage} />
+            <BrandLogo className="footer-logo" />
             <div>
               <strong>Golden Rose Agencia de Empleos NYC</strong>
               <span>{copy.footer.tagline}</span>
@@ -142,6 +155,7 @@ export function SiteFooter() {
             DCWP Job Hunter Rights
             <span className="sr-only">, opens in a new tab</span>
           </a>
+          <Link href="/domestic-violence-resources">{copy.nav.resources}</Link>
           <a
             className="volta-credit"
             href="https://www.novusnyc.org/"
