@@ -1562,16 +1562,16 @@ form p {
   z-index: 1;
 }
 
-.footer-bottom a:not(.volta-credit) {
+.footer-bottom a:not(.novus-credit) {
   color: rgb(var(--surface-rgb) / 0.8);
   font-weight: 900;
 }
 
-.footer-bottom a:not(.volta-credit):hover {
+.footer-bottom a:not(.novus-credit):hover {
   color: var(--mustard);
 }
 
-.volta-credit {
+.novus-credit {
   color: var(--credit);
   font-weight: 900;
   margin-left: auto;
@@ -1580,7 +1580,7 @@ form p {
   white-space: nowrap;
 }
 
-.volta-credit:hover {
+.novus-credit:hover {
   color: var(--credit);
 }
 

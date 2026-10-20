@@ -157,7 +157,7 @@ export function SiteFooter() {
           </a>
           <Link href="/domestic-violence-resources">{copy.nav.resources}</Link>
           <a
-            className="volta-credit"
+            className="novus-credit"
             href="https://www.novusnyc.org/"
             rel="noreferrer"
             target="_blank"
